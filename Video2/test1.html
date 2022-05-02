@@ -1,0 +1,47 @@
+<html><style>*{margin:0; padding:0;}html, body {width:100%; height:100%;}myCanvas { display:block;}</style><body style='background-color:black;'><section><div id='canvasesdiv' style='position:relative; width:100%; height:100%'>
+<canvas id='layer1' style='z-index: 1;position:absolute;left:0px;top:0px;'></canvas>
+<canvas id='layer2' style='z-index: 2;position:absolute;left:0px;top:0px;'></canvas>
+</div>
+<script>
+    function test1I1(){
+    }
+    function test1D1(){
+        //ssx=window.innerWidth;ssy=window.innerHeight;ss=Math.min(ssx,ssy);
+        //test1ctx1.clearRect(0, 0, ssx, ssy);
+        //setTimeout(function(){window.requestAnimationFrame(function(){test1D1()})},16)
+    }
+    function test1I2(){
+    }
+    function test1D2(){
+        //ssx=window.innerWidth;ssy=window.innerHeight;ss=Math.min(ssx,ssy);
+        //test1ctx2.clearRect(0, 0, ssx, ssy);
+        //setTimeout(function(){window.requestAnimationFrame(function(){test1D2()})},16)
+    }
+</script>
+<script>
+    const canvas1 = document.getElementById('layer1'); const test1ctx1 = canvas1.getContext('2d');
+    const canvas2 = document.getElementById('layer2'); const test1ctx2 = canvas2.getContext('2d');
+    var WIDTH = window.innerWidth; var HEIGHT = window.innerHeight;
+    canvas1.width = WIDTH; canvas1.height = HEIGHT;
+    canvas2.width = WIDTH; canvas2.height = HEIGHT;
+    function resizeCanvas() {
+        WIDTH = window.innerWidth; HEIGHT = window.innerHeight;
+        canvas1.width = WIDTH; canvas1.height = HEIGHT;
+        canvas2.width = WIDTH; canvas2.height = HEIGHT;
+        location.reload();
+    }
+    window.addEventListener('resize', resizeCanvas, false);
+    function InitAll(){
+        test1I1();
+        test1I2();
+        DrawAll();
+    }
+    function DrawAll(){
+        test1D1();
+        test1D2();
+    }
+    InitAll();
+</script>
+</section>
+</body>
+</html>
