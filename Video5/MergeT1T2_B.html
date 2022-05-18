@@ -1,0 +1,71 @@
+<html><style>*{margin:0; padding:0;}html, body {width:100%; height:100%;}myCanvas { display:block;}</style><body style='background-color:black;'><section><div id='canvasesdiv' style='position:relative; width:100%; height:100%'>
+<canvas id='layer1' style='z-index: 1;position:absolute;left:0px;top:0px;'></canvas>
+<canvas id='layer2' style='z-index: 2;position:absolute;left:0px;top:0px;'></canvas>
+</div>
+<script>
+    function test1I1(){
+    }
+    function test1D1(xpos,ypos,r){
+        ssx=window.innerWidth;ssy=window.innerHeight;ss=Math.min(ssx,ssy);
+        //test1ctx1.clearRect(0, 0, ssx, ssy);
+        test1ctx1.fillStyle = "#FFFF00";
+        test1ctx1.beginPath();
+        test1ctx1.arc(ssx*xpos,ssy*ypos,ssy*r,0,Math.PI*2);
+        test1ctx1.fill();
+        //setTimeout(function(){window.requestAnimationFrame(function(){test1D1()})},16)
+    }
+    function test1I2(){
+    }
+    function test1D2(xpos,ypos,size){
+        ssx=window.innerWidth;ssy=window.innerHeight;ss=Math.min(ssx,ssy);
+        //test1ctx2.clearRect(0, 0, ssx, ssy);
+        test1ctx2.fillStyle = "#FF0000";
+        let L=ssy*size;
+        test1ctx2.fillRect(ssx*xpos-L/2, ssy*ypos-L/2, L, L); 
+        //setTimeout(function(){window.requestAnimationFrame(function(){test1D2()})},16)
+    }
+</script>
+<script>
+    function test2I1(){
+        test2ang = 0;
+    }
+    function test2D1(xpos,ypos,sw,sh){
+        ssx=window.innerWidth;ssy=window.innerHeight;ss=Math.min(ssx,ssy);
+        test2ctx1.clearRect(0, 0, ssx, ssy);
+        test2ctx1.fillStyle = "#0000FF";
+        test2ctx1.translate(ssx*xpos,ssy*ypos);
+        test2ctx1.rotate(test2ang);
+        let W=ssy*sw, H=ssy*sh;
+        test2ctx1.fillRect(0-W/2,0-H/2,W,H);
+        test2ctx1.setTransform(1, 0, 0, 1, 0, 0);
+        test2ang = test2ang + 0.01;
+        setTimeout(function(){window.requestAnimationFrame(function(){test2D1(xpos,ypos,sw,sh)})},16)
+    }
+</script>
+<script>
+    const canvas1 = document.getElementById('layer1'); const test1ctx2 = canvas1.getContext('2d');
+    const canvas2 = document.getElementById('layer2'); const test2ctx1 = canvas2.getContext('2d');
+    var WIDTH = window.innerWidth; var HEIGHT = window.innerHeight;
+    canvas1.width = WIDTH; canvas1.height = HEIGHT;
+    canvas2.width = WIDTH; canvas2.height = HEIGHT;
+    function resizeCanvas() {
+        WIDTH = window.innerWidth; HEIGHT = window.innerHeight;
+        canvas1.width = WIDTH; canvas1.height = HEIGHT;
+        canvas2.width = WIDTH; canvas2.height = HEIGHT;
+        location.reload();
+    }
+    function InitAll(){
+        test1I2();
+        test2I1();
+        DrawAll();
+    }
+    function DrawAll(){
+        test1D2(0.5,0.5,1);
+        test2D1(0.5,0.5,1,0.01);
+    }
+    window.addEventListener('resize', resizeCanvas, false);
+    InitAll();
+</script>
+</section>
+</body>
+</html>
